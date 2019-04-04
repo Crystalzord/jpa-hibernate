@@ -3,14 +3,16 @@ package com.crystalzord.entity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@NamedQuery(name="query_get_all_courses", query="Select c from Course c")
+@NamedQueries(value = {
+        @NamedQuery(name = "query_get_50_step_courses",
+                query = "Select c from Course c where name like '%50 steps'"),
+        @NamedQuery(name = "query_get_all_courses",
+                query = "Select c from Course c")
+})
 public class Course {
 
     @Id

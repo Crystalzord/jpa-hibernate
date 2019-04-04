@@ -12,19 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import java.util.List;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CourseRepositoryTest {
 
     @Autowired
     CourseRepository repository;
-
-    @Autowired
-    EntityManager entityManager;
 
     private Logger logger = LoggerFactory.getLogger(CourseRepositoryTest.class);
 
@@ -54,10 +47,4 @@ public class CourseRepositoryTest {
         Assert.assertEquals("JPA in 50 steps - updated", course1.getName());
     }
 
-    @Test
-    public void jpql_typed() {
-        TypedQuery<Course> query = entityManager.createNamedQuery("query_get_all_courses", Course.class);
-        List<Course> resultList = query.getResultList();
-        logger.info("Select c from Course c -> {}", resultList);
-    }
 }
