@@ -36,17 +36,19 @@ public class CourseRepository {
         entityManager.remove(course);
     }
 
-    public void testEntityManager() {
-        Course course = new Course("Test course");
-        entityManager.persist(course);
-        entityManager.flush();
 
-        course.setName("Test course - updated");
-        entityManager.refresh(course);
-        entityManager.flush();
 
-        Course course2 = findById(10001L);
-        course2.setName("UPDATED UPDATED UPDATED");
-    }
+//    public void testEntityManager() {
+//        Course course = new Course("Test course");
+//        entityManager.persist(course);
+//        entityManager.flush();
+//
+//        course.setName("Test course - updated");
+//        entityManager.refresh(course);
+//        entityManager.flush();
+//
+//        Course course2 = findById(10001L);
+//        course2.setName("UPDATED UPDATED UPDATED");
+//    }
 
 }

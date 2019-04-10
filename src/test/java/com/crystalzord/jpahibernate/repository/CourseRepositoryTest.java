@@ -17,33 +17,33 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CourseRepositoryTest {
 
     @Autowired
-    CourseRepository repository;
+    CourseRepository courseRepository;
 
     private Logger logger = LoggerFactory.getLogger(CourseRepositoryTest.class);
 
     @Test
     public void findById_basic() {
-        Course course = repository.findById(10001L);
+        Course course = courseRepository.findById(10001L);
         Assert.assertEquals("JPA in 50 steps", course.getName());
     }
 
     @Test
     @DirtiesContext
     public void deleteById_basic() {
-        repository.deleteById(10002L);
-        Assert.assertNull(repository.findById(10002L));
+        courseRepository.deleteById(10002L);
+        Assert.assertNull(courseRepository.findById(10002L));
     }
 
     @Test
     @DirtiesContext
     public void save_basic() {
-        Course course = repository.findById(10001L);
+        Course course = courseRepository.findById(10001L);
         Assert.assertEquals("JPA in 50 steps", course.getName());
         course.setName("JPA in 50 steps - updated");
 
-        repository.save(course);
+        courseRepository.save(course);
 
-        Course course1 = repository.findById(10001L);
+        Course course1 = courseRepository.findById(10001L);
         Assert.assertEquals("JPA in 50 steps - updated", course1.getName());
     }
 

@@ -46,17 +46,11 @@ public class StudentRepository {
         entityManager.persist(student);
     }
 
-    public void testEntityManager() {
-        Student student = new Student("Test student");
-        entityManager.persist(student);
-        entityManager.flush();
-
-        student.setName("Test student - updated");
-        entityManager.refresh(student);
-        entityManager.flush();
-
-        Student student2 = findById(10001L);
-        student2.setName("UPDATED UPDATED UPDATED");
+    public void someOperationToUnderstandPersistenceContext() {
+        Student student = entityManager.find(Student.class, 20001L);
+        Passport passport = student.getPassport();
+        passport.setNumber("G241 - Updated");
+        student.setName("Lukasz - Updated");
     }
 
 }
