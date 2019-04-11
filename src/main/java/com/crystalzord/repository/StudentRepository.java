@@ -1,7 +1,10 @@
 package com.crystalzord.repository;
 
+import com.crystalzord.entity.Course;
 import com.crystalzord.entity.Passport;
 import com.crystalzord.entity.Student;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,6 +14,8 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public class StudentRepository {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PersistenceContext
     EntityManager entityManager;
@@ -51,6 +56,26 @@ public class StudentRepository {
         Passport passport = student.getPassport();
         passport.setNumber("G241 - Updated");
         student.setName("Lukasz - Updated");
+    }
+
+    public void addHardCodedStudentAndCourse() {
+        Student student = new Student("Jack");
+        Course course = new Course("Microservices in 100 Steps");
+
+        entityManager.persist(student);
+        entityManager.persist(course);
+
+        student.addCourse(course);
+        course.addStudent(student);
+
+        entityManager.persist(student);
+    }
+
+    public void addStudentAndCourse(Student student, Course course) {
+        student.addCourse(course);
+        course.addStudent(student);
+        entityManager.persist(student);
+        entityManager.persist(course);
     }
 
 }

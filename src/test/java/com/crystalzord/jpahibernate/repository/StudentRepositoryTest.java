@@ -1,5 +1,6 @@
 package com.crystalzord.jpahibernate.repository;
 
+import com.crystalzord.entity.Course;
 import com.crystalzord.entity.Passport;
 import com.crystalzord.entity.Student;
 import com.crystalzord.repository.StudentRepository;
@@ -32,26 +33,39 @@ public class StudentRepositoryTest {
     @DirtiesContext
     public void someTest() {
         studentRepository.someOperationToUnderstandPersistenceContext();
-        printStudentAndHisPassport(20001L);
+        Student student = entityManager.find(Student.class, 20001L);
+        logger.info("Student -> {}", student);
+        logger.info("Passport -> {}", student.getPassport());
     }
-
 
     @Test
     @Transactional
     public void retriveStudentAndPassportDetails() {
-        printStudentAndHisPassport(20001L);
+        Student student = entityManager.find(Student.class, 20001L);
+        logger.info("Student -> {}", student);
+        logger.info("Passport -> {}", student.getPassport());
     }
 
     @Test
     @Transactional
     public void retrivePassportAndAssociatedStudent() {
         Passport passport = entityManager.find(Passport.class, 40001L);
-        logger.info("Password {} belongs to {}", passport, passport.getStudent());
+        logger.info("Passport {} belongs to {}", passport, passport.getStudent());
     }
 
-    private void printStudentAndHisPassport(Long id){
-        Student student = entityManager.find(Student.class, id);
+    @Test
+    @Transactional
+    public void retriveStudentAndCourses() {
+        Student student = entityManager.find(Student.class, 20001L);
         logger.info("Student -> {}", student);
-        logger.info("Student -> {}", student.getPassport());
+        logger.info("Courses -> {}", student.getCourses());
+    }
+
+    @Test
+    @Transactional
+    public void retriveCourseAndStudents() {
+        Course course = entityManager.find(Course.class, 10001L);
+        logger.info("Course -> {}", course);
+        logger.info("Students -> {}", course.getStudents());
     }
 }

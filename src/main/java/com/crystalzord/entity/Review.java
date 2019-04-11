@@ -1,9 +1,6 @@
 package com.crystalzord.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Review {
@@ -18,6 +15,9 @@ public class Review {
     @Column(nullable = false)
     private String description;
 
+    @ManyToOne
+    private Course course;
+
     protected Review() {
 
     }
@@ -25,6 +25,14 @@ public class Review {
     public Review(String rating, String description) {
         this.rating = rating;
         this.description = description;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public String getRating() {

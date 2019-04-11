@@ -1,6 +1,7 @@
 package com.crystalzord.jpahibernate.repository;
 
 import com.crystalzord.entity.Course;
+import com.crystalzord.entity.Review;
 import com.crystalzord.repository.CourseRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,12 +13,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CourseRepositoryTest {
 
     @Autowired
     CourseRepository courseRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     private Logger logger = LoggerFactory.getLogger(CourseRepositoryTest.class);
 
@@ -45,6 +52,20 @@ public class CourseRepositoryTest {
 
         Course course1 = courseRepository.findById(10001L);
         Assert.assertEquals("JPA in 50 steps - updated", course1.getName());
+    }
+
+    @Test
+    @Transactional
+    public void retriveReviewsForCourse() {
+        Course course = courseRepository.findById(10001L);
+        logger.info("{}", course.getReviews());
+    }
+
+    @Test
+    @Transactional
+    public void retriveCourseForReview() {
+        Review review = entityManager.find(Review.class, 50001L);
+        logger.info("{}", review.getCourse());
     }
 
 }
