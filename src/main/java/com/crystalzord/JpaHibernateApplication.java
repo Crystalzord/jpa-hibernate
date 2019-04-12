@@ -1,10 +1,10 @@
 package com.crystalzord;
 
-import com.crystalzord.entity.Course;
-import com.crystalzord.entity.Review;
-import com.crystalzord.entity.Student;
-import com.crystalzord.repository.CourseRepository;
-import com.crystalzord.repository.StudentRepository;
+import com.crystalzord.hierarchies.entities.FullTimeEmployee;
+import com.crystalzord.hierarchies.entities.PartTimeEmployee;
+import com.crystalzord.hierarchies.repositories.EmployeeRepository;
+import com.crystalzord.course.repositories.CourseRepository;
+import com.crystalzord.course.repositories.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 @SpringBootApplication
 public class JpaHibernateApplication implements CommandLineRunner {
@@ -26,24 +25,19 @@ public class JpaHibernateApplication implements CommandLineRunner {
 	@Autowired
 	private StudentRepository studentRepository;
 
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(JpaHibernateApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-//		List<Review> reviews = new ArrayList<>();
-//		Review review1 = new Review("5", "Super course!");
-//		Review review2 = new Review("3", "Good but I miss many topics");
-//		reviews.add(review1);
-//		reviews.add(review2);
-//
-//		courseRepository.addReviewsForCourse(10003L, reviews);
+		employeeRepository.insert(new PartTimeEmployee("Mike", new BigDecimal(50)));
+		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal(10000)));
 
-//		studentRepository.addHardCodedStudentAndCourse();
+		logger.info("Employees -> {}", employeeRepository.retriveAllEmployees());
 
-		Student student = new Student("New Student");
-		Course course = new Course("New in 900 steps");
-		studentRepository.addStudentAndCourse(student, course);
 	}
 }

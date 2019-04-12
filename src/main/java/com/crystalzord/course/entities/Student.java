@@ -1,4 +1,4 @@
-package com.crystalzord.entity;
+package com.crystalzord.course.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;

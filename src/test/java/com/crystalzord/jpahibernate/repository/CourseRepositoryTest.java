@@ -1,8 +1,8 @@
 package com.crystalzord.jpahibernate.repository;
 
-import com.crystalzord.entity.Course;
-import com.crystalzord.entity.Review;
-import com.crystalzord.repository.CourseRepository;
+import com.crystalzord.course.entities.Course;
+import com.crystalzord.course.entities.Review;
+import com.crystalzord.course.repositories.CourseRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

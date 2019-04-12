@@ -1,9 +1,9 @@
 package com.crystalzord.jpahibernate.repository;
 
-import com.crystalzord.entity.Course;
-import com.crystalzord.entity.Passport;
-import com.crystalzord.entity.Student;
-import com.crystalzord.repository.StudentRepository;
+import com.crystalzord.course.entities.Course;
+import com.crystalzord.course.entities.Passport;
+import com.crystalzord.course.entities.Student;
+import com.crystalzord.course.repositories.StudentRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

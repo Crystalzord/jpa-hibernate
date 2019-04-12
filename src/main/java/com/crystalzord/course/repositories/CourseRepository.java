@@ -1,7 +1,7 @@
-package com.crystalzord.repository;
+package com.crystalzord.course.repositories;
 
-import com.crystalzord.entity.Course;
-import com.crystalzord.entity.Review;
+import com.crystalzord.course.entities.Course;
+import com.crystalzord.course.entities.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;

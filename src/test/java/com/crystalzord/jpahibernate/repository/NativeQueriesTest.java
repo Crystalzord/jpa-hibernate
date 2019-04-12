@@ -1,6 +1,6 @@
 package com.crystalzord.jpahibernate.repository;
 
-import com.crystalzord.entity.Course;
+import com.crystalzord.course.entities.Course;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
