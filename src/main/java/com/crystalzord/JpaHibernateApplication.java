@@ -22,6 +22,7 @@ public class JpaHibernateApplication implements CommandLineRunner {
 	@Autowired
 	private CourseRepository courseRepository;
 
+
 	@Autowired
 	private StudentRepository studentRepository;
 
@@ -34,10 +35,10 @@ public class JpaHibernateApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		employeeRepository.insert(new PartTimeEmployee("Mike", new BigDecimal(50)));
-		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal(10000)));
-
-		logger.info("Employees -> {}", employeeRepository.retriveAllEmployees());
-
+//		employeeRepository.insert(new PartTimeEmployee("Mike", new BigDecimal(50)));
+//		employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal(10000)));
+//
+//		logger.info("Full Time Employees -> {}", employeeRepository.retriveAllFullTimeEmployees());
+//		logger.info("Part Time Employees -> {}", employeeRepository.retriveAllPartTimeEmployees());
 	}
 }

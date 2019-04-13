@@ -3,7 +3,9 @@ package com.crystalzord.hierarchies.entities;
 import javax.persistence.*;
 
 @Entity
-public class Employee {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="EmployeeType")
+public abstract class Employee {
 
     @Id
     @GeneratedValue
